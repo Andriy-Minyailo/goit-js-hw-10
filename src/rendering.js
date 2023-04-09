@@ -1,7 +1,7 @@
 export function renderListCountries(array) {
     return array.map(({ flags: { svg }, name: { official } }) => {
         return `<li>
-        <img src=${svg} alt='flag' width=20> ${official}</li>`;
+        <img src=${svg} alt='flag' width=20> ${official}</li>`
     }).join("");
 }
 
