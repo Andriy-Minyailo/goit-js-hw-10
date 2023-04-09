@@ -1,16 +1,14 @@
-// const options = new URLSearchParams({
-//     name.official },
-//     capital,
-//     population,
-//     flags.svg },
-//     languages
-// });
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 const url = 'https://restcountries.com/v3.1/name/';
+const filter ='fields=name,capital,population,flags,languages'
 
-function fetchCountries(name) {
-    return fetch(`${url}${name}?fields={name.official},{capital},{population},{flags.svg},{languages}`).then(response => response.json()).then(users => {
-        console.log("users inside then callback: ", users)
+export function fetchCountries(name) {
+  return fetch(`${url}${name}?${filter}`).then(response => {
+        if (!response.ok) {
+            throw Notify.failure("Oops, there is no country with that name");
+        }
+        return response.json();
     });
-}
-    
-fetchCountries(ukr);
+    };
+
+ 
