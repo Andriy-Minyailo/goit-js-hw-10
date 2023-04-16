@@ -37,9 +37,13 @@ function onFetchCountries(event) {
             refs.countryLlist.innerHTML = "";
             refs.countryIinfo.innerHTML = rendercountry(arrayCoutries);
         })
-        .catch(error => {
+        .catch((error) => {
+            if (error.message === "Cannot read properties of undefined (reading 'languages')") {
+                Notify.failure("Oops, there is no country with that name");
+            }
             clearHtml();
-          })
+            console.log(error.message);
+           })
 }
 
 function clearHtml() {
